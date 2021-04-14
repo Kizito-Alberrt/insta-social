@@ -8,7 +8,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User, auth
 
 from django.contrib.auth.decorators import login_required
-
+################################################
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import UserUpdateForm, ProfileUpdateForm, NewCommentForm, videoform
@@ -18,9 +18,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 
 # Create your views here.
+def base(request):
 
+    return render(request,'base.html')
 
-
+####################################################
 
 def index(request):
     posts = Post.objects.all().filter(created_date__lte=timezone.now()).order_by('-created_date')
@@ -35,7 +37,7 @@ def profile_photos(request):
     photos = Profile.objects.all()
     return render(request,'profile_photos.html',{'photos':photos})
 
-
+####################################################
 
 def register(request):
     if request.method == 'POST':
@@ -70,7 +72,7 @@ def register(request):
 
     return render(request,'register.html')
 
-
+################################################
 
 def login(request):
     if request.method == 'POST':
@@ -86,13 +88,13 @@ def login(request):
     else:
         return render(request, 'base.html')
 
-
+##############################################
         
 def logout(request):
     auth.logout(request)
     return redirect('/')
 
-
+##############################################
 # for index likes
 
 def like_post(request):
@@ -115,6 +117,7 @@ def like_post(request):
     return redirect('index')
     
 
+#############################################
 # find friends page
 
 def find_friends(request):
@@ -122,14 +125,14 @@ def find_friends(request):
     
    return render(request,'find_friends.html',{'users':users})
 
-
+##############################################
 # profile page
 
 def profile(request):
 
     return render(request,'profile.html')
 
-##
+################################################
 #profile update 
 
 @login_required
@@ -155,7 +158,8 @@ def profile_update(request):
 
     return render(request,'profile_update.html',context)
 
-
+################################
+# individual user posts
 
 class UserPostListView(ListView):
     model = Post

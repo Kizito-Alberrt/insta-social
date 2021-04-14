@@ -96,28 +96,15 @@
         <strong style="opacity: 0.7;">{{post.liked.all.count}} Likes</strong>
         </div>
     </div>
-        <!-- end likes -->
-        
-    
-        <!-- comments
-
-    <div class="row">
-        <div class="col-6">
-            <small style="opacity: 0.6; padding: 35px;">
-                {{ post.number_of_comments }} comment(s)
-            </small>
-        </div>
-    </div>
-         end comments  -->
-
+       
     
     <div class="caption">
         <a style="opacity: 0.7;" href="{% url 'post_details' post.id %}"><h4><strong>{{post.author}}</strong></h4></a>
         <span><p><h5>-{{post.caption}}</h5></p></span>
     </div>
     <div style="opacity: 0.7;" class="time_posted">
-        {{post.created_date}} <!--{{post.created_date | timesince}} ago for days and time  -->
-    </div>                    <!-- {{post.created_date | date:"F d, Y"}} for date only -->
+        {{post.created_date}} 
+    </div>                    
 </div>
 {% endfor %}
 {% endblock %}
